@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 5732507beb473ca489394ccda1576260
+  - enabled: 1
+    path: Assets/Scenes/OpheliaParc.unity
+    guid: 02b826838da29e74ca9153153cc11705
+  - enabled: 1
     path: Assets/Scenes/OpheliaRoom.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/OpheliaLibrary.unity
+    guid: ca0efd96d6d2ccd47a60600d5b161135
   m_configObjects: {}
