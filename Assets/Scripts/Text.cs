@@ -29,12 +29,12 @@ public class Text : MonoBehaviour
             messageTimer -= Time.deltaTime;
             if (messageTimer <= 0)
             {
-                CLear();
+                Clear();
             }
         }
     }
 
-    private void CLear()
+    private void Clear()
     {
         fadeBackground.enabled = false;
         message.text = "";
@@ -42,6 +42,6 @@ public class Text : MonoBehaviour
 
     private void Start()
     {
-        CLear();
+        Clear();
     }
 }

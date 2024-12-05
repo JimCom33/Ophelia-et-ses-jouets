@@ -6,8 +6,7 @@ public class QuitGame : MonoBehaviour
 {
     public void Quit()
     {
-
-        if(Application.isEditor)
+        if (Application.isEditor)
         {
             UnityEditor.EditorApplication.isPlaying = false;
         }
@@ -15,6 +14,5 @@ public class QuitGame : MonoBehaviour
         {
             Application.Quit();
         }
-        
     }
 }

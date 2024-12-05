@@ -11,7 +11,6 @@ public class MoveToLibrary : MonoBehaviour
 
     private bool isHovering = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
@@ -22,7 +21,6 @@ public class MoveToLibrary : MonoBehaviour
         Debug.Log("entre");
         if (other.CompareTag("Mouse"))
         {
-            
             isHovering = true;
             Cursor.SetCursor(arrow, hotspot, CursorMode.Auto);
         }
@@ -33,13 +31,11 @@ public class MoveToLibrary : MonoBehaviour
         Debug.Log("sortie");
         if (other.CompareTag("Mouse"))
         {
-            
             isHovering = false;
             Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isHovering && Input.GetMouseButtonDown(0))
