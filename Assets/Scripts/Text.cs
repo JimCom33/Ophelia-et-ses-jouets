@@ -12,7 +12,7 @@ public class Text : MonoBehaviour
 
     internal void ShowText(string text)
     {
-        ShowText(text, 5f);
+        ShowText(text, 30f);
     }
 
     internal void ShowText(string text, float duration)
@@ -42,6 +42,6 @@ public class Text : MonoBehaviour
 
     private void Start()
     {
-        Clear();
+        //Clear();
     }
 }

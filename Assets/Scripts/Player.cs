@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int erreurGlobal = 0;
     void Start()
     {
         
@@ -12,5 +13,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AddErreurGlob()
+    {
+        erreurGlobal++;
+
+        Debug.Log($"erreur : {erreurGlobal}");
     }
 }

@@ -40,7 +40,7 @@ public class MoveToLibrary : MonoBehaviour
     {
         if (isHovering && Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("OpheliaLibrary");
+            SceneManager.LoadScene("OpheliaMaisonForest");
         }
     }
 }
