@@ -12,56 +12,63 @@ public class Flower : MonoBehaviour
 
     public bool flowerDone = false;
 
+    public GameObject opheliaFachee;
+    public GameObject ophelia;
+
+    private DialogueParc dialogueParc;
+    private Player player;
+
+    void Start()
+    {
+        player = FindAnyObjectByType<Player>();
+        dialogueParc = FindAnyObjectByType<DialogueParc>();
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (dialogueParc.isInteracting)
         {
-            GameObject mouseObject = GameObject.Find("Mouse");
-
-            Collider2D mouseCollider = mouseObject?.GetComponent<Collider2D>();
-            if (mouseCollider != null)
+            if (Input.GetMouseButtonDown(0))
             {
-                mouseCollider.enabled = false;
-            }
+                GameObject mouseObject = GameObject.Find("Mouse");
 
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            
-
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-
-            if (hit.collider != null)
-            {
-                Debug.Log($"Objet détecté : {hit.collider.gameObject.name}");
-
-
-                if (hit.collider.gameObject == gameObject)
+                Collider2D mouseCollider = mouseObject?.GetComponent<Collider2D>();
+                if (mouseCollider != null)
                 {
-                    Debug.Log("Fleure");
+                    mouseCollider.enabled = false;
+                }
 
-                    if (!hasBeenClicked)
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+                if (hit.collider != null)
+                {
+                    Debug.Log($"Objet détecté : {hit.collider.gameObject.name}");
+
+                    if (hit.collider.gameObject == gameObject)
                     {
-                        hasBeenClicked = true;
-                        Debug.Log($"Vous avez cliqué sur {gameObject.name}");
+                        Debug.Log("Fleur");
 
+                        if (!hasBeenClicked)
+                        {
+                            hasBeenClicked = true;
+                            Debug.Log($"Vous avez cliqué sur {gameObject.name}");
 
-                        StartCoroutine(ShowMessageAfterDelay(5f));
-
-                        
+                            StartCoroutine(ShowMessageAfterDelay(5f));
+                        }
                     }
                 }
-                
-                
+                else
+                {
+                    WrongClick();
+                }
+
+                if (mouseCollider != null)
+                {
+                    mouseCollider.enabled = true;
+                }
             }
-            else
-            {
-                WrongClick();
-            }
-            if (mouseCollider != null)
-            {
-                mouseCollider.enabled = true;
-            }
-            
         }
     }
 
@@ -69,18 +76,21 @@ public class Flower : MonoBehaviour
     {
         wrongClicks++;
 
-        if(wrongClicks == 1)
+        if (wrongClicks == 1)
         {
-            //Visage facher
+            ophelia.SetActive(false);
+            opheliaFachee.SetActive(true);
             Debug.Log("ophelia facher");
         }
 
-        if(wrongClicks == 3)
+        if (wrongClicks == 3)
         {
             //Visage plein écran
+            //ophelia.SetActive(false);
+            //opheliaFachee.SetActive(true);
             Debug.Log("Visage pleine ecran");
             FindAnyObjectByType<Text>().ShowText("J’ai dit la fleur. Comprends-tu?", 5f);
-            FindAnyObjectByType<Player>().AddErreurGlob();
+            player.AddErreurGlob();
         }
     }
 

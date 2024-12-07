@@ -24,7 +24,7 @@ public class ClickManagerScript : MonoBehaviour
         while (positionDifference.magnitude > moveAccuracy)
         {
             // move in direction frame by frame
-            player.Translate(moveSpeed*positionDifference.normalized*Time.deltaTime);
+            player.Translate(moveSpeed * positionDifference.normalized * Time.deltaTime);
             yield return null;
 
             // set direction

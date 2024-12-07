@@ -9,14 +9,14 @@ public class Cat : MonoBehaviour
     public AudioSource catScary;
 
     private int catClick = 0;
+    private Player player;
 
-    // Start is called before the first frame update
     void Start()
     {
+        player = FindAnyObjectByType<Player>();
         catMiaw.enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && FindAnyObjectByType<Flower>().flowerDone)
@@ -31,14 +31,11 @@ public class Cat : MonoBehaviour
 
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-
-
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
             if (hit.collider != null)
             {
                 Debug.Log($"Objet détecté : {hit.collider.gameObject.name}");
-
 
                 if (hit.collider.gameObject == gameObject)
                 {
@@ -47,16 +44,13 @@ public class Cat : MonoBehaviour
                     Debug.Log($"Vous avez cliqué sur {gameObject.name}");
 
                     CatClicks();
-
-                    StartCoroutine(CatMiawDelay(3f));
-                   
                 }
-            }           
+            }          
+            
             if (mouseCollider != null)
             {
                 mouseCollider.enabled = true;
             }
-
         }
     }
 
@@ -67,7 +61,6 @@ public class Cat : MonoBehaviour
         catMiaw.enabled = true;
 
         catMiaw.Play();
-
     }
 
     private void CatClicks()
@@ -77,7 +70,11 @@ public class Cat : MonoBehaviour
         if (catClick > 3)
         {
             catScary.Play();
-            FindAnyObjectByType<Player>().AddErreurGlob();
+            player.AddErreurGlob();
+        }
+        else
+        {
+            StartCoroutine(CatMiawDelay(1f));
         }
     }
 }

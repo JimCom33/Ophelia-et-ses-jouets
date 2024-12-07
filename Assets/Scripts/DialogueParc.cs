@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class DialogueParc : MonoBehaviour
 {
-
     public bool isInteracting = false;
 
     private string[] dialogueLines = new string[]
@@ -21,39 +20,32 @@ public class DialogueParc : MonoBehaviour
 
     private int currentLineIndex = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
-        isInteracting = true;
+        isInteracting = false;
         currentLineIndex = 0;
         ShowNextDialogue();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
-        
-            if (Input.GetMouseButtonDown(1))
-            {
-                ShowNextDialogue();
-            }
-        
+        if (Input.GetMouseButtonDown(1))
+        {
+            ShowNextDialogue();
+        }
     }
 
     private void ShowNextDialogue()
     {
-        
         if (currentLineIndex < dialogueLines.Length)
         {
-            
             FindAnyObjectByType<Text>().ShowText(dialogueLines[currentLineIndex]);
             currentLineIndex++;
         }
         else
         {
             FindAnyObjectByType<Text>().ShowText("Elle est peut-être derrière cette fleur?", 2f);
-            isInteracting = false;
+            isInteracting = true;
         }
     }
 }

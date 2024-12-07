@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int erreurGlobal = 0;
+
     void Start()
     {
         
