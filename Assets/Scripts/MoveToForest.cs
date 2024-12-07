@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MoveToLibrary : MonoBehaviour
+public class MoveToForest : MonoBehaviour
 {
     public Texture2D arrow;
     private Texture2D defaultCursor;

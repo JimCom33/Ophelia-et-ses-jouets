@@ -12,7 +12,7 @@ public class ChangeRoom : MonoBehaviour
 
     void Update()
     {
-        SceneManager.LoadScene("OpheliaLibrary");
+        SceneManager.LoadScene("OpheliaMaisonForest");
 
         SceneManager.LoadScene("OpheliaRoom");
     }
