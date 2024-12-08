@@ -31,9 +31,9 @@ public class EndingManager : MonoBehaviour
         goodOphelia.SetActive(false);
         badOphelia.SetActive(true);
         StartCoroutine(ScaleChangeOverTime(8f, 8f));
-        scarySoundsRoom.Play();
-        scaryLaugh.Play();
         scaryMusic.Play();
+        scaryLaugh.Play();
+        scarySoundsRoom.Play();
         StartCoroutine(GoBackToMenu());
     }
 
