@@ -2,26 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cat : MonoBehaviour
+public class Poupee : MonoBehaviour
 {
-    public AudioSource catMiaw;
-
-    public AudioSource catScary;
-
-    public GameObject moveTo;
-
-    private int catClick = 0;
+    private int wrongClicks;
+    
     private Player player;
 
+    // Start is called before the first frame update
     void Start()
     {
-        player = FindAnyObjectByType<Player>();
-        catMiaw.enabled = false;
+
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && FindAnyObjectByType<Flower>().flowerDone)
+        if (Input.GetMouseButtonDown(0))
         {
             GameObject mouseObject = GameObject.Find("Mouse");
 
@@ -41,16 +37,21 @@ public class Cat : MonoBehaviour
 
                 if (hit.collider.gameObject == gameObject)
                 {
-                    Debug.Log("chat");
+                    Debug.Log("Poupee");
 
                     Debug.Log($"Vous avez cliqué sur {gameObject.name}");
 
-                    moveTo.SetActive(true);
+                    FindAnyObjectByType<Text>().ShowText("Ophélia : Ah elle était là tout ce temps!");
 
-                    CatClicks();
+                    //afficher poupee
+
                 }
-            }          
-            
+            }
+            else
+            {
+                WrongClick();
+            }
+
             if (mouseCollider != null)
             {
                 mouseCollider.enabled = true;
@@ -58,27 +59,17 @@ public class Cat : MonoBehaviour
         }
     }
 
-    private IEnumerator CatMiawDelay(float delay)
+    private void WrongClick()
     {
-        yield return new WaitForSeconds(delay);
+        wrongClicks++;
 
-        catMiaw.enabled = true;
-
-        catMiaw.Play();
-    }
-
-    private void CatClicks()
-    {
-        catClick++;
-
-        if (catClick > 3)
+        if (wrongClicks > 3)
         {
-            catScary.Play();
+            //plus sombre
+            //son etrange
+            //ourson sur le lit épeurant
+
             player.AddErreurGlob();
-        }
-        else
-        {
-            StartCoroutine(CatMiawDelay(1f));
         }
     }
 }

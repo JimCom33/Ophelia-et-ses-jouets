@@ -78,8 +78,8 @@ public class Flower : MonoBehaviour
 
         if (wrongClicks == 1)
         {
-            ophelia.SetActive(false);
-            opheliaFachee.SetActive(true);
+            //ophelia.SetActive(false);
+            //opheliaFachee.SetActive(true);
             Debug.Log("ophelia facher");
         }
 
