@@ -13,6 +13,7 @@ public class Flower : MonoBehaviour
     public bool flowerDone = false;
 
     public GameObject opheliaFachee;
+    public GameObject opheliaNeutre;
     public GameObject ophelia;
 
     private DialogueParc dialogueParc;
@@ -78,18 +79,16 @@ public class Flower : MonoBehaviour
 
         if (wrongClicks == 1)
         {
-            //ophelia.SetActive(false);
-            //opheliaFachee.SetActive(true);
-            Debug.Log("ophelia facher");
+            StartCoroutine(ShowOpheliaForSeconds(3f, opheliaNeutre));
+            Debug.Log("ophelia neutre");
         }
 
         if (wrongClicks == 3)
         {
             //Visage plein écran
-            //ophelia.SetActive(false);
-            //opheliaFachee.SetActive(true);
-            Debug.Log("Visage pleine ecran");
-            FindAnyObjectByType<Text>().ShowText("J’ai dit la fleur. Comprends-tu?", 5f);
+            StartCoroutine(ShowOpheliaForSeconds(3f, opheliaFachee));
+            Debug.Log("ophelia fachee");
+            FindAnyObjectByType<Text>().ShowText("Tu ne m'aides pas à chercher. Je veux ma poupée, comprends-tu?", 5f);
             player.AddErreurGlob();
         }
     }
@@ -98,7 +97,7 @@ public class Flower : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        FindAnyObjectByType<Text>().ShowText("Non, ma poupée n'est pas la.", 5f);
+        FindAnyObjectByType<Text>().ShowText("Non, ma poupée n'est pas là.", 5f);
 
         yield return new WaitForSeconds(3f);
 
@@ -110,5 +109,14 @@ public class Flower : MonoBehaviour
     public void FlowerDone()
     {
         flowerDone = true;
+    }
+
+    IEnumerator ShowOpheliaForSeconds(float delay, GameObject varOphelia)
+    {
+        yield return new WaitForSeconds(delay);
+        varOphelia.SetActive(true);
+
+        yield return new WaitForSeconds(delay);
+        varOphelia.SetActive(false);
     }
 }

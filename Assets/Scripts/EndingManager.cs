@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class EndingManager : MonoBehaviour
 {
-    bool badEndingTriggered = false;
+    public bool badEndingTriggered = false;
+    public AudioSource scarySoundsRoom;
+    public AudioSource scaryLaugh;
+    public AudioSource scaryMusic;
+    public AudioSource happyMusic;
 
     public GameObject goodOphelia;
     public GameObject badOphelia;
@@ -18,35 +22,50 @@ public class EndingManager : MonoBehaviour
 
     void Update()
     {
-        if (badEndingTriggered)
-        {
-            goodOphelia.SetActive(false);
-            badOphelia.SetActive(true);
-            StartCoroutine(ScaleChangeOverTime(2f, 2f));
-            //playSound
-            SceneManager.LoadScene("EndMenuGood");
-        }
-        else
-        {
-            SceneManager.LoadScene("EndMenuGood");
-        }
+
     }
 
+    public void TriggerBadEnding()
+    { 
+        happyMusic.Pause();
+        goodOphelia.SetActive(false);
+        badOphelia.SetActive(true);
+        StartCoroutine(ScaleChangeOverTime(8f, 8f));
+        scarySoundsRoom.Play();
+        scaryLaugh.Play();
+        scaryMusic.Play();
+        StartCoroutine(GoBackToMenu());
+    }
+
+    bool isScaling = false;
     private IEnumerator ScaleChangeOverTime(float duration, float scale)
     {
-        Vector3 opheliaScale = badOphelia.GetComponent<Transform>().localScale;
+        if (isScaling)
+        {
+            yield break;
+        }
+        isScaling = true;
+        Transform transform = badOphelia.GetComponent<Transform>();
+        Vector3 opheliaScale = transform.localScale;
         var initialScale = opheliaScale;
-        var finalScale = Vector3.one * scale;
+        var finalScale = opheliaScale * scale;
         var elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
             var time = elapsedTime / duration;
-            opheliaScale = Vector3.Lerp(initialScale, finalScale, time);
+            transform.localScale = Vector3.Lerp(initialScale, finalScale, time);
             elapsedTime += Time.deltaTime;
+            Debug.Log(elapsedTime);
             yield return null;
         }
 
         opheliaScale = finalScale;
+    }
+
+    IEnumerator GoBackToMenu()
+    {
+        yield return new WaitForSeconds(5.0f);
+        SceneManager.LoadScene("Menu");
     }
 }

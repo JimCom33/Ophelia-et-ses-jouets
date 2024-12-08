@@ -5,12 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player Instance;
-
     public int erreurGlobal = 0;
+    private EndingManager endingManager;
 
     void Start()
     {
-        
+        //endingManager = FindAnyObjectByType<EndingManager>();
     }
 
     void Update()
@@ -27,7 +27,18 @@ public class Player : MonoBehaviour
     public void AddErreurGlob()
     {
         erreurGlobal++;
-
         Debug.Log($"erreur : {erreurGlobal}");
+        if (erreurGlobal > 3)
+        {
+            if (!endingManager)
+            {
+                endingManager = FindAnyObjectByType<EndingManager>();
+            }
+
+            if (endingManager) 
+            {
+                endingManager.TriggerBadEnding();
+            }
+        }
     }
 }

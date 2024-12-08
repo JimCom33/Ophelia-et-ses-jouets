@@ -9,6 +9,7 @@ public class Text : MonoBehaviour
     public Image fadeBackground;
     public TMP_Text message;
     private float messageTimer;
+    public Image imageDark;
 
     internal void ShowText(string text)
     {
@@ -34,7 +35,7 @@ public class Text : MonoBehaviour
         }
     }
 
-    private void Clear()
+    public void Clear()
     {
         fadeBackground.enabled = false;
         message.text = "";
@@ -43,5 +44,10 @@ public class Text : MonoBehaviour
     private void Start()
     {
         //Clear();
+    }
+
+    public void ScreenDarker()
+    {
+        imageDark.enabled = true;
     }
 }

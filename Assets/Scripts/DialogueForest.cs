@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueForst : MonoBehaviour
+public class DialogueForest : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        FindAnyObjectByType<Text>().ShowText("Ophélia : La grenouille a peut-être mon jouet?", 5f);
+        FindAnyObjectByType<Text>().ShowText("Ophélia : La grenouille sait peut-être où est mon jouet?", 5f);
     }
 
     void Update()

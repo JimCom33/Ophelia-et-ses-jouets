@@ -5,13 +5,13 @@ using UnityEngine;
 public class Cat : MonoBehaviour
 {
     public AudioSource catMiaw;
-
     public AudioSource catScary;
-
     public GameObject moveTo;
 
     private int catClick = 0;
     private Player player;
+
+    private bool isErreurGlobAdded = false;
 
     void Start()
     {
@@ -42,11 +42,8 @@ public class Cat : MonoBehaviour
                 if (hit.collider.gameObject == gameObject)
                 {
                     Debug.Log("chat");
-
                     Debug.Log($"Vous avez cliqué sur {gameObject.name}");
-
                     moveTo.SetActive(true);
-
                     CatClicks();
                 }
             }          
@@ -71,10 +68,14 @@ public class Cat : MonoBehaviour
     {
         catClick++;
 
-        if (catClick > 3)
+        if (catClick > 2)
         {
             catScary.Play();
-            player.AddErreurGlob();
+            if (!isErreurGlobAdded)
+            {
+                player.AddErreurGlob();
+                isErreurGlobAdded = true;
+            }
         }
         else
         {

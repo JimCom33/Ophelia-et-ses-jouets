@@ -10,7 +10,6 @@ public class MoveToHouse : MonoBehaviour
     public Vector2 hotspot = Vector2.zero;
 
     private bool isHovering = false;
-
     public Frog frog;
 
     void Start()
@@ -20,10 +19,12 @@ public class MoveToHouse : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.CompareTag("Mouse"))
         {
-            frog.enabled = false;
+            if (frog)
+            {
+                frog.enabled = false;
+            }
 
             Debug.Log("entre");
             isHovering = true;
@@ -33,11 +34,13 @@ public class MoveToHouse : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-
         if (other.CompareTag("Mouse"))
         {
-            frog.enabled = true;
-
+            if (frog)
+            {
+                frog.enabled = true;
+            }
+           
             Debug.Log("sortie");
             isHovering = false;
             Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);

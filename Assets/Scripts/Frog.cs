@@ -6,25 +6,21 @@ using UnityEngine;
 public class Frog : MonoBehaviour
 {
     public AudioSource frogDie;
-
     public GameObject moveTo;
-
     public GameObject moveToPark;
+    public GameObject bouton;
 
     private int frogClicks = 0;
 
-    private Player player;
-
     public BoxCollider2D boxCollider;
+    public GameObject frog;
+    public GameObject deadFrog;
 
-
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -53,8 +49,10 @@ public class Frog : MonoBehaviour
 
                     FrogClicks();
 
-                    StartCoroutine(FrogDialogue());
-
+                    if (frogClicks == 1)
+                    {
+                        StartCoroutine(FrogDialogue());
+                    }
                 }
             }
 
@@ -68,20 +66,23 @@ public class Frog : MonoBehaviour
     private void FrogClicks()
     {
         frogClicks++;
-
         Debug.Log("click grenouille");
 
         if (frogClicks > 3)
         {
-            //frogDie.Play();
-
+            deadFrog.SetActive(true);
+            frogDie.Play();
             boxCollider.enabled = false;
-
             Debug.Log("grenouille meurt");
 
-            //bouton tombe
+            if (Player.Instance)
+            {
+                Player.Instance.AddErreurGlob();
+            }
 
-            Player.Instance.AddErreurGlob();
+            FindAnyObjectByType<Text>().ShowText("", 0.0f);
+            frog.SetActive(false);
+            moveTo.SetActive(true);
         }
     }
 
@@ -89,32 +90,32 @@ public class Frog : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        FindAnyObjectByType<Text>().ShowText("Ophélia: Bonjour grenouille, as-tu vu ma poupée? (Click droit pour passer)");
+        FindAnyObjectByType<Text>().ShowText("Ophélia: Bonjour Grenouille, as-tu vu ma poupée? (Click droit pour passer)");
 
         yield return WaitForRightClick();
 
-        FindAnyObjectByType<Text>().ShowText("Grenouille: Oui, elle marchait ici il n’y a pas longtemps. Elle a laissé ceci derrière elle. (Click droit pour passer)");
+        FindAnyObjectByType<Text>().ShowText("Grenouille: Oui, elle marchait ici il n’y a pas longtemps. Elle a échappé ceci. (Click droit pour passer)");
 
-        //affiche le bouton
-
-        yield return WaitForRightClick();
-
-        FindAnyObjectByType<Text>().ShowText("Ophélia : Ça vient de ma poupée! Il a dû se détacher et tomber. Sais-tu ou elle est allé? (Click droit pour passer)");
+        //ShowBouton
+        StartCoroutine(ShowBoutonForSeconds(1f));
 
         yield return WaitForRightClick();
 
-        FindAnyObjectByType<Text>().ShowText("Grenouille : Elle se dirigeait vers la maison ici. (Click droit pour passer)");
+        FindAnyObjectByType<Text>().ShowText("Ophélia : Ça vient de ma poupée! Il a dû se détacher et a tombé. Sais-tu où elle est allée? (Click droit pour passer)");
 
         yield return WaitForRightClick();
 
-        FindAnyObjectByType<Text>().ShowText("Ophélia : Ah, mais c’est ma maison! Allons voir dans la chambre. (Click droit pour passer)");
+        FindAnyObjectByType<Text>().ShowText("Grenouille : Elle se dirigeait vers la maison. (Click droit pour passer)");
+
+        yield return WaitForRightClick();
+
+        FindAnyObjectByType<Text>().ShowText("Ophélia : Ah, c’est ma maison! Allons voir dans ma chambre. (Click droit pour passer)");
 
         moveTo.SetActive(true);
 
         yield return WaitForRightClick();
 
         FindAnyObjectByType<Text>().ShowText("", 2f);
-
     }
 
     private IEnumerator WaitForRightClick()
@@ -128,5 +129,14 @@ public class Frog : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+    IEnumerator ShowBoutonForSeconds(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        bouton.SetActive(true);
+
+        yield return new WaitForSeconds(delay);
+        bouton.SetActive(false);
     }
 }

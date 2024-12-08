@@ -12,7 +12,6 @@ public class MoveToForest : MonoBehaviour
     public bool isHovering = false;
 
     public Cat cat;
-
     public Flower flower;
 
     void Start()
@@ -22,12 +21,13 @@ public class MoveToForest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         if (other.CompareTag("Mouse"))
         {
-
-            flower.enabled = false;
-            cat.enabled = false;
+            if (flower && cat)
+            {
+                flower.enabled = false;
+                cat.enabled = false;
+            }
 
             Debug.Log("entre");
             isHovering = true;
@@ -37,11 +37,13 @@ public class MoveToForest : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        
         if (other.CompareTag("Mouse"))
         {
-            flower.enabled = true;
-            cat.enabled = true;
+            if (flower && cat)
+            {
+                flower.enabled = true;
+                cat.enabled = true;
+            }
 
             Debug.Log("sortie");
             isHovering = false;
@@ -58,10 +60,7 @@ public class MoveToForest : MonoBehaviour
                 LoadScene();
             }
         }
-
-        
     }
-
 
     private void LoadScene()
     {

@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Poupee : MonoBehaviour
 {
     private int wrongClicks;
-    
-    private Player player;
 
-    // Start is called before the first frame update
+    public GameObject poupee;
+    public GameObject oursonEpeurant;
+
+    public AudioSource scarySound;
+
     void Start()
     {
         FindAnyObjectByType<Text>().ShowText("", 0.1f);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -31,7 +33,7 @@ public class Poupee : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-            if (hit.collider != null)
+            if (hit.collider)
             {
                 Debug.Log($"Objet détecté : {hit.collider.gameObject.name}");
 
@@ -43,9 +45,9 @@ public class Poupee : MonoBehaviour
 
                     FindAnyObjectByType<Text>().ShowText("Ophélia : Ah elle était là tout ce temps!");
 
-                    
-                    //afficher poupee
+                    StartCoroutine(ShowObjectForSeconds(2f, poupee));
 
+                    StartCoroutine(DisplayGoodEnding());
                 }
             }
             else
@@ -64,13 +66,30 @@ public class Poupee : MonoBehaviour
     {
         wrongClicks++;
 
-        if (wrongClicks > 3)
+        if (wrongClicks > 2)
         {
-            //plus sombre
-            //son etrange
-            //ourson sur le lit épeurant
+            if (scarySound)
+            {
+                scarySound.Play();
+            }
+            StartCoroutine(ShowObjectForSeconds(2f, oursonEpeurant));
 
             Player.Instance.AddErreurGlob();
         }
+    }
+
+    IEnumerator ShowObjectForSeconds(float delay, GameObject varObject)
+    {
+        varObject.SetActive(true);
+        yield return new WaitForSeconds(delay);
+
+        varObject.SetActive(false);
+    }
+
+    IEnumerator DisplayGoodEnding()
+    {
+        yield return new WaitForSeconds(3.0f);
+        FindAnyObjectByType<Text>().Clear();
+        SceneManager.LoadScene("GoodEnding");
     }
 }

@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MoveToPark : MonoBehaviour
 {
+    public AudioSource scarySoundsParc;
     public Texture2D arrow;
     private Texture2D defaultCursor;
     public Vector2 hotspot = Vector2.zero;
-
     private bool isHovering = false;
-
-    private Player player;
-
     public Frog frog;
+    public Image imageDark;
 
     void Start()
     {
@@ -22,11 +21,13 @@ public class MoveToPark : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.CompareTag("Mouse"))
         {
+            if (frog)
+            {
+                frog.enabled = false;
+            }
 
-            frog.enabled = false;
             Debug.Log("entre");
             isHovering = true;
             Cursor.SetCursor(arrow, hotspot, CursorMode.Auto);
@@ -35,10 +36,12 @@ public class MoveToPark : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-
         if (other.CompareTag("Mouse"))
         {
-            frog.enabled = true;
+            if (frog)
+            {
+                frog.enabled = true;
+            }
 
             Debug.Log("sortie");
             isHovering = false;
@@ -50,9 +53,24 @@ public class MoveToPark : MonoBehaviour
     {
         if (isHovering && Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("OpheliaParc");
+            scarySoundsParc.Play();
+            if (imageDark)
+            {
+                imageDark.enabled = true;
+            }
 
-            player.AddErreurGlob();
+            if (Player.Instance)
+            {
+                Player.Instance.AddErreurGlob();
+            }
+
+            //StartCoroutine(GoBackToPark());
         }
+    }
+
+    IEnumerator GoBackToPark()
+    {
+        yield return new WaitForSeconds(5.0f);
+        SceneManager.LoadScene("OpheliaParc");
     }
 }
