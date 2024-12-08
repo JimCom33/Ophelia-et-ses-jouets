@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
     public int erreurGlobal = 0;
 
     void Start()
@@ -14,6 +16,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void Awake()
+    {
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void AddErreurGlob()

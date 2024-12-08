@@ -13,6 +13,8 @@ public class MoveToPark : MonoBehaviour
 
     private Player player;
 
+    public Frog frog;
+
     void Start()
     {
         Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
@@ -23,6 +25,8 @@ public class MoveToPark : MonoBehaviour
 
         if (other.CompareTag("Mouse"))
         {
+
+            frog.enabled = false;
             Debug.Log("entre");
             isHovering = true;
             Cursor.SetCursor(arrow, hotspot, CursorMode.Auto);
@@ -34,6 +38,8 @@ public class MoveToPark : MonoBehaviour
 
         if (other.CompareTag("Mouse"))
         {
+            frog.enabled = true;
+
             Debug.Log("sortie");
             isHovering = false;
             Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
@@ -42,7 +48,7 @@ public class MoveToPark : MonoBehaviour
 
     void Update()
     {
-        if (!isHovering && Input.GetMouseButtonDown(0))
+        if (isHovering && Input.GetMouseButtonDown(0))
         {
             SceneManager.LoadScene("OpheliaParc");
 

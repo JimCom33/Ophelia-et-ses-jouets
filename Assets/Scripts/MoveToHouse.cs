@@ -11,6 +11,8 @@ public class MoveToHouse : MonoBehaviour
 
     private bool isHovering = false;
 
+    public Frog frog;
+
     void Start()
     {
         Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
@@ -21,6 +23,8 @@ public class MoveToHouse : MonoBehaviour
 
         if (other.CompareTag("Mouse"))
         {
+            frog.enabled = false;
+
             Debug.Log("entre");
             isHovering = true;
             Cursor.SetCursor(arrow, hotspot, CursorMode.Auto);
@@ -32,6 +36,8 @@ public class MoveToHouse : MonoBehaviour
 
         if (other.CompareTag("Mouse"))
         {
+            frog.enabled = true;
+
             Debug.Log("sortie");
             isHovering = false;
             Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);

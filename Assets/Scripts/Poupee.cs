@@ -11,7 +11,7 @@ public class Poupee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        FindAnyObjectByType<Text>().ShowText("", 0.1f);
     }
 
     // Update is called once per frame
@@ -43,6 +43,7 @@ public class Poupee : MonoBehaviour
 
                     FindAnyObjectByType<Text>().ShowText("Ophélia : Ah elle était là tout ce temps!");
 
+                    
                     //afficher poupee
 
                 }
@@ -69,7 +70,7 @@ public class Poupee : MonoBehaviour
             //son etrange
             //ourson sur le lit épeurant
 
-            player.AddErreurGlob();
+            Player.Instance.AddErreurGlob();
         }
     }
 }

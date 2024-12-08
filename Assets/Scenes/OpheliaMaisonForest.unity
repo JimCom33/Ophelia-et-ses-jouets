@@ -991,6 +991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 2800000, guid: e20b20e35c3890041af6ad22edf5b603, type: 3}
   hotspot: {x: 0, y: 0}
+  frog: {fileID: 1593127906}
 --- !u!1 &1397606002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,7 +1077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1409281431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1091,6 +1092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 2800000, guid: 5b28fe7323799fb4a888c24caf6fd2ae, type: 3}
   hotspot: {x: 0, y: 0}
+  frog: {fileID: 1593127906}
 --- !u!61 &1409281432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1120,7 +1122,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.23501492, y: -0.64807177}

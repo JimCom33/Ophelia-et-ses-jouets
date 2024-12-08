@@ -81,7 +81,7 @@ public class Frog : MonoBehaviour
 
             //bouton tombe
 
-            //player.AddErreurGlob();
+            Player.Instance.AddErreurGlob();
         }
     }
 
