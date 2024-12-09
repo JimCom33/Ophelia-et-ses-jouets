@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Poupee : MonoBehaviour
+public class Poupee : ItemData
 {
     private int wrongClicks;
 
@@ -74,7 +74,10 @@ public class Poupee : MonoBehaviour
             }
             StartCoroutine(ShowObjectForSeconds(2f, oursonEpeurant));
 
-            Player.Instance.AddErreurGlob();
+            if (Player.Instance)
+            {
+                Player.Instance.AddErreurGlob();
+            }
         }
     }
 

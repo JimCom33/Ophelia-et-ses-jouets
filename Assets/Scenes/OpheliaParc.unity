@@ -423,7 +423,7 @@ MonoBehaviour:
           m_MethodName: GoToItem
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 1947601350}
+            m_ObjectArgument: {fileID: 1947601353}
             m_ObjectArgumentAssemblyTypeName: ItemData, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -1355,8 +1355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 2800000, guid: e20b20e35c3890041af6ad22edf5b603, type: 3}
+  defaultCursor: {fileID: 0}
   hotspot: {x: 0, y: 0}
-  isHovering: 0
+  sceneName: OpheliaMaisonForest
   cat: {fileID: 1320735098}
   flower: {fileID: 1947601353}
 --- !u!61 &1146264529
@@ -1429,7 +1430,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1320735094}
   - component: {fileID: 1320735093}
-  - component: {fileID: 1320735095}
   - component: {fileID: 1320735098}
   - component: {fileID: 1320735097}
   - component: {fileID: 1320735096}
@@ -1511,19 +1511,6 @@ Transform:
   - {fileID: 1118143663}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1320735095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320735092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b930d8bb80a8d43a14f276df913434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goToPoint: {fileID: 2032051109}
 --- !u!82 &1320735096
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1677,6 +1664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c4359a6858eb74489c510383801711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goToPoint: {fileID: 2032051109}
   catMiaw: {fileID: 1320735096}
   catScary: {fileID: 1320735099}
   moveTo: {fileID: 1146264527}
@@ -2100,7 +2088,7 @@ MonoBehaviour:
           m_MethodName: GoToItem
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 1320735095}
+            m_ObjectArgument: {fileID: 1320735098}
             m_ObjectArgumentAssemblyTypeName: ItemData, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -2258,7 +2246,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1947601352}
   - component: {fileID: 1947601351}
-  - component: {fileID: 1947601350}
   - component: {fileID: 1947601353}
   - component: {fileID: 1947601354}
   m_Layer: 0
@@ -2268,19 +2255,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1947601350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947601349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b930d8bb80a8d43a14f276df913434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goToPoint: {fileID: 556173538}
 --- !u!212 &1947601351
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2361,6 +2335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a72b495749cda4e8618b9837724ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goToPoint: {fileID: 556173538}
   flowerDone: 0
   opheliaFachee: {fileID: 1132780725}
   opheliaNeutre: {fileID: 1426198012}

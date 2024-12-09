@@ -12,6 +12,7 @@ public class ClickManagerScript : MonoBehaviour
 
     public void GoToItem(ItemData item)
     {
+        Debug.Log("Who called Go To Item?");
         StartCoroutine(MoveToPoint(item.goToPoint.position));
     }
 

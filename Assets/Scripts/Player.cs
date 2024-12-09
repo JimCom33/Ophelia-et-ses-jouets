@@ -8,16 +8,6 @@ public class Player : MonoBehaviour
     public int erreurGlobal = 0;
     private EndingManager endingManager;
 
-    void Start()
-    {
-        //endingManager = FindAnyObjectByType<EndingManager>();
-    }
-
-    void Update()
-    {
-        
-    }
-
     private void Awake()
     {
         Instance = this;

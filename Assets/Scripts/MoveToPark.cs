@@ -4,22 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MoveToPark : MonoBehaviour
+public class MoveToPark : MoveTo
 {
     public AudioSource scarySoundsParc;
-    public Texture2D arrow;
-    private Texture2D defaultCursor;
-    public Vector2 hotspot = Vector2.zero;
-    private bool isHovering = false;
     public Frog frog;
     public Image imageDark;
 
-    void Start()
-    {
-        Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Mouse"))
         {
@@ -34,7 +25,7 @@ public class MoveToPark : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    protected override void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Mouse"))
         {
@@ -49,7 +40,7 @@ public class MoveToPark : MonoBehaviour
         }
     }
 
-    void Update()
+    protected override void Update()
     {
         if (isHovering && Input.GetMouseButtonDown(0))
         {
@@ -63,7 +54,6 @@ public class MoveToPark : MonoBehaviour
             {
                 Player.Instance.AddErreurGlob();
             }
-
             //StartCoroutine(GoBackToPark());
         }
     }

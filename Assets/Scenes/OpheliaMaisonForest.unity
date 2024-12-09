@@ -283,7 +283,7 @@ MonoBehaviour:
           m_MethodName: GoToItem
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 1593127904}
+            m_ObjectArgument: {fileID: 1593127906}
             m_ObjectArgumentAssemblyTypeName: ItemData, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -1075,7 +1075,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 2800000, guid: e20b20e35c3890041af6ad22edf5b603, type: 3}
+  defaultCursor: {fileID: 0}
   hotspot: {x: 0, y: 0}
+  sceneName: OpheliaRoom
   frog: {fileID: 1593127906}
 --- !u!1 &1397606002
 GameObject:
@@ -1175,9 +1177,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0726a595cc3643c42ad590f7c54a3c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scarySoundsParc: {fileID: 1601194755}
   arrow: {fileID: 2800000, guid: 5b28fe7323799fb4a888c24caf6fd2ae, type: 3}
+  defaultCursor: {fileID: 0}
   hotspot: {x: 0, y: 0}
+  sceneName: 
+  scarySoundsParc: {fileID: 1601194755}
   frog: {fileID: 1593127906}
   imageDark: {fileID: 1900133800}
 --- !u!61 &1409281432
@@ -1333,7 +1337,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1593127903}
-  - component: {fileID: 1593127904}
   - component: {fileID: 1593127905}
   - component: {fileID: 1593127906}
   m_Layer: 0
@@ -1364,19 +1367,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.08482653, y: 0.6710325}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1593127904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593127902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b930d8bb80a8d43a14f276df913434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goToPoint: {fileID: 68688493}
 --- !u!61 &1593127905
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1434,6 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f746314ed7ff69340bcbe84d0debb87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goToPoint: {fileID: 68688493}
   frogDie: {fileID: 1607264377}
   moveTo: {fileID: 1347731501}
   moveToPark: {fileID: 1409281430}

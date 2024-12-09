@@ -5,7 +5,7 @@ using UnityEngine;
 using static Unity.Burst.Intrinsics.Arm;
 using static UnityEditor.ShaderData;
 
-public class Flower : MonoBehaviour
+public class Flower : ItemData
 {
     private bool hasBeenClicked = false;
     private int wrongClicks = 0;

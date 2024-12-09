@@ -3,24 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MoveToForest : MonoBehaviour
+public class MoveToForest : MoveTo
 {
-    public Texture2D arrow;
-    private Texture2D defaultCursor;
-    public Vector2 hotspot = Vector2.zero;
-
-    public bool isHovering = false;
-
     public Cat cat;
     public Flower flower;
 
-    void Start()
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
-        Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+        base.OnTriggerEnter2D(other);
         if (other.CompareTag("Mouse"))
         {
             if (flower && cat)
@@ -35,7 +25,7 @@ public class MoveToForest : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    protected override void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Mouse"))
         {
@@ -48,30 +38,6 @@ public class MoveToForest : MonoBehaviour
             Debug.Log("sortie");
             isHovering = false;
             Cursor.SetCursor(defaultCursor, hotspot, CursorMode.Auto);
-        }
-    }
-
-    void Update()
-    {
-        if (isHovering)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                LoadScene();
-            }
-        }
-    }
-
-    private void LoadScene()
-    {
-        try
-        {
-            SceneManager.LoadScene("OpheliaMaisonForest");
-            Debug.Log("La scène a été chargée avec succès.");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"Erreur de chargement : {e.Message}");
         }
     }
 }

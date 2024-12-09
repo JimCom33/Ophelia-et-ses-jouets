@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public class Frog : MonoBehaviour
+public class Frog : ItemData
 {
     public AudioSource frogDie;
     public GameObject moveTo;
